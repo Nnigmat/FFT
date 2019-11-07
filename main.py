@@ -5,7 +5,7 @@ from glob import glob
 from os import mkdir, path
 
 in_folder, ext = 'input', 'tif'
-out_folder = 'NikitaNigmatullinOutputs'
+out_folder = 'output'
 
 
 def IFFT(arr):
@@ -30,8 +30,8 @@ def FFT(arr, inverse=False):
         return arr
     else:
         # Recursively run FFT for even and odd arr's elements
-        even, odd = FFT(arr[0::2], inverse=inverse), FFT(
-            arr[1::2], inverse=inverse)
+        even, odd = FFT(arr[0::2], inverse=inverse), FFT(arr[1::2],
+                                                         inverse=inverse)
 
         # Calculate the omega value
         omega = sign * 2j * np.pi / arr.shape[0]
@@ -76,7 +76,9 @@ def save_image(path, img):
 
     # Map the image to grayscale format and save it in format `nameCompressed.ext`
     mpimg.imsave(f'{out_folder}/{name}Compressed.{ext}',
-                 img, format='TIFF', cmap='gray')
+                 img,
+                 format='TIFF',
+                 cmap='gray')
 
 
 if __name__ == "__main__":
